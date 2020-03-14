@@ -1,0 +1,183 @@
+html, body {
+    background-color: #f2dede;;
+    color: #636b6f;
+    font-family: 'Raleway', sans-serif;
+    font-weight: 100;
+    height: 100vh;
+    margin: 0;
+}
+
+.full-height {
+    height: 100vh;
+}
+
+.btn-pup {
+    color: #fff;
+    background-color: #a91b71;
+    border-color: #dc3545;
+}
+
+.btn-se {
+    color: #fff;
+    background-color: #383536;
+    border-color: #6c757d;
+}
+
+.flex-center {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+}
+
+.position-ref {
+    position: relative;
+}
+
+.top-right {
+    position: absolute;
+    right: 10px;
+    top: 18px;
+}
+
+.content {
+    text-align: center;
+}
+
+.title {
+    font-size: 84px;
+}
+
+.links > a {
+    color: #636b6f;
+    padding: 0 25px;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: .1rem;
+    text-decoration: none;
+    text-transform: uppercase;
+}
+
+
+.m-b-md {
+    margin-bottom: 30px;
+}
+/*
+========================
+3D Effect
+========================
+*/
+#text3d {
+color: #dc3545;
+font-family: 'Raleway', sans-serif;
+letter-spacing: .15em;
+text-shadow:
+-1px -1px 1px #efede3,
+0px 1px 0 #2e2e2e,
+0px 2px 0 #2c2c2c,
+0px 3px 0 #2a2a2a,
+0px 4px 0 #282828,
+0px 5px 0 #262626,
+0px 6px 0 #242424,
+0px 7px 0 #222,
+0px 8px 0 #202020,
+0px 9px 0 #1e1e1e,
+0px 10px 0 #1c1c1c,
+0px 11px 0 #1a1a1a,
+0px 12px 0 #181818,
+0px 13px 0 #161616,
+0px 14px 0 #141414,
+0px 15px 0 #121212,
+2px 20px 5px rgba(0, 0, 0, 0.9),
+5px 23px 5px rgba(0, 0, 0, 0.3),
+8px 27px 8px rgba(0, 0, 0, 0.5),
+8px 28px 35px rgba(0, 0, 0, 0.9);
+}
+
+
+div.divFooter {
+background: url('icon/ms-icon-70x70.png');
+/* display: block;
+margin-top: 55px;
+margin-bottom: 100px; */
+
+
+bottom: 0;
+background-repeat: no-no-repeat;
+height: 70px;padding: 0px 0px;
+}
+
+.alligator-show-box {
+background-size: 150px;
+background-repeat: space;
+background-image:
+url(/images/cowboy.svg);
+}
+
+@media (max-width: 480px) {
+
+}
+@media (min-width: 481px) {
+
+}
+
+
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 600px) {
+.responsive-imagew {
+width: auto;
+max-width: 100% ;
+height: auto ;
+}
+
+.ui{
+height: 70px;
+width: 324px;
+padding: 0px 0px;
+}
+}
+
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (min-width: 600px) {
+.responsive-imagew {
+width: auto;
+max-width: 100% ;
+height: auto ;
+}
+
+.ui{
+height: 70px;
+width: 324px;
+padding: 0px 0px;
+}
+}
+
+/* Medium devices (landscape tablets, 768px and up) */
+@media only screen and (min-width: 768px) {
+.responsive-imagew {
+width: auto;
+max-width: 100% ;
+height: auto ;
+}
+
+.ui{
+height: 70px;
+width: 600px;
+padding: 0px 0px;
+}
+}
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) {
+
+}
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 1200px) {
+
+}
+
+.top-left {
+position: absolute;
+left: 10px;
+top: 18px;
+}
