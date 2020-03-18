@@ -32,7 +32,7 @@
               <th>S/N</th>
                 <th>Name</th>
                 <th>Phone</th>
-                <th>Department</th>
+                <th>Location</th>
                 <th>Gender</th>
                 <th>Time In</th>
                   <th></th>
@@ -53,7 +53,7 @@
                 <td>{{$count++}}</td>
                 <td>{{$p->name}}</td>
                 <td>{{$p->phone}}</td>
-                <td>{{$p->dp}}</td>
+                <td>{{$p->qr_code}}</td>
                   <td>{{$p->gender}}</td>
                 <td>{{date('d/m/Y h:i:a',strtotime($p->created_at))}}</td>
                   <td></td>
@@ -65,7 +65,7 @@
                 <th>S/N</th>
                 <th>Name</th>
                 <th>Phone</th>
-                <th>Department</th>
+                <th>Location</th>
                   <th>Gender</th>
                 <th>Time In</th>
                   <th></th>

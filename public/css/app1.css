@@ -4037,12 +4037,16 @@ fieldset[disabled] .btn-default.focus {
 
 .btn-primary {
   color: #fff;
-  background-color: #3097D1;
+  background-color: #3097D1;#e03472;
   border-color: #2a88bd;
 }
 
 
-
+.btn-primary-clips {
+  color: #fff;
+  background-color: #e03472;
+  border-color: #2a88bd;
+}
 
 .btn-primary:focus,
 .btn-primary.focus {
@@ -5602,14 +5606,8 @@ tbody.collapse.in {
 }
 
 .navbar-default {
-  background-color: #fa1010;
+  background-color: #aa1b71;
   border-color: #d3e0e9;
-}
-
-.btn-primary-clips {
-  color: #fff;
-  background-color: #fa1010;
-  border-color: #2a88bd;
 }
 
 .navbar-default .navbar-brand {

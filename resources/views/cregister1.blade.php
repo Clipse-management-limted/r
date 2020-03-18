@@ -38,7 +38,7 @@
 
                         <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
                             <label for="name" class="col-md-4 control-label">Full Name</label>
-<br>
+
                             <div class="col-md-6">
                                 <input id="name" type="text" class="form-control" name="name" value="{{ old('name') }}" placeholder="Mr/Mrs ..."  required autofocus>
 
@@ -48,11 +48,11 @@
                                     </span>
                                 @endif
                             </div>
-                        </div><br>
+                        </div><br><br>
 
                         <div class="form-group{{ $errors->has('phone_no') ? ' has-error' : '' }}">
                             <label for="phone_no" class="col-md-4 control-label">Mobile Number     </label>
-<br>
+
                             <div class="col-md-6">
                                 <input id="phone_no" type="text" class="form-control" name="phone_no" value="{{ old('phone_no') }}" placeholder="0802334 ..."  required autofocus>
 
@@ -63,20 +63,7 @@
                                 @endif
                             </div>
                         </div>
-                      <br>
-                      <div class="form-group{{ $errors->has('dp') ? ' has-error' : '' }}">
-                          <label for="dp" class="col-md-4 control-label">Department</label>
-<br>
-                          <div class="col-md-6">
-                              <input id="dp" type="text" class="form-control" name="dp" value="{{ old('dp') }}" placeholder="Department ..."  required autofocus>
-
-                              @if ($errors->has('dp'))
-                                  <span class="help-block">
-                                      <strong>{{ $errors->first('dp') }}</strong>
-                                  </span>
-                              @endif
-                          </div>
-                      </div><br>
+                      <br><br>
                         {{-- <div class="form-group{{ $errors->has('phone_no') ? ' has-error' : '' }}">
                             <label for="email" class="col-md-4 control-label">Email </label>
 
@@ -142,8 +129,8 @@
                             <div class="col-md-6">
                               <select id="gender" name="gender" class="form-group{{ $errors->has('gender') ? ' has-error' : '' }}">
                                 <option value="">Select Gender </option>
-                                <option value="Male">Male </option>
-                                <option value="Female">Female </option>
+                                <option value="m">Male </option>
+                                <option value="f">FeMale </option>
 
                               </select>
 
@@ -153,9 +140,23 @@
                                     </span>
                                 @endif
                             </div>
-                        </div><br>
+                        </div><br><br>
 
 
+
+                        <div class="form-group{{ $errors->has('qr_code') ? ' has-error' : '' }}">
+                            <label for="qr_code" class="col-md-4 control-label">Registration Code</label>
+
+                            <div class="col-md-6">
+                                <input id="qr_code" type="text" class="form-control" name="qr_code" value="{{ old('qr_code') }}" placeholder="5476356756 ..."  required autofocus>
+
+                                @if ($errors->has('qr_code'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('qr_code') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
 
 
                                       <div class="form-group">
@@ -166,7 +167,7 @@
                       </div> -->
                     </div>
                     <div class="form-group">
-<button type="submit" class="btn btn-primary-clips" name="btn_save" id="btn_save">
+<button type="submit" class="btn btn-primary" name="btn_save" id="btn_save">
 <span class="glyphicon glyphicon-log-in"></span> &nbsp; Register
 </button>
 </div>
@@ -219,13 +220,11 @@
         var sh = 'NIL';
         var gender        = $('#gender').val();
         var qr_code        = $('#qr_code').val();
-        var dp            = $('#dp').val();
         $.ajax({
             type : "POST",
-            url  : "{{route('creg22')}}",
-              // url  : "{{route('creg22')}}",
+            url  : "{{route('creg2')}}",
             dataType : "JSON",
-            data : {name:name,qr_code:qr_code,phone_no:phone_no, email:email,sh:sh,gender:gender,dp:dp},
+            data : {name:name,qr_code:qr_code,phone_no:phone_no, email:email,sh:sh,gender:gender},
             success: function(data){
               console.log(data);
 	       	if(data.error =="1"){
@@ -239,7 +238,6 @@
             $('[name="sh"]').val(" ");
             $('[name="gender"]').val(" ");
             $('[name="qr_code"]').val(" ");
-            $('[name="dp"]').val(" ");
 
             $("#add-error-bag").fadeIn(20, function()
                           {
@@ -267,7 +265,6 @@
                      $('[name="sh"]').val(" ");
                      $('[name="gender"]').val(" ");
                      $('[name="qr_code"]').val(" ");
-                       $('[name="dp"]').val(" ");
 
                      $("#add-error-bag").fadeIn(20, function()
                                                            {

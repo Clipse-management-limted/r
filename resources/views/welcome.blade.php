@@ -103,7 +103,7 @@
                 </div>
 
             </div>
-
+  </div>
 
             {{-- <div class="divFooter pull-right" style=""><img  src="icon/ms-icon-70x70.png" alt="{{ config('app.name', 'Laravel') }}" /></div>
   </div> --}}
