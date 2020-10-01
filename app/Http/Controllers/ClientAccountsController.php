@@ -17,7 +17,7 @@ class ClientAccountsController extends Controller
       $this->middleware('auth');
   }
 
-  
+
     public function DataDownload()
     {
   //      $posts=  cos::all();
@@ -51,7 +51,6 @@ $re='All';
      $pos=  Clients::where('ch', '!=' ,'1' )->get();
     //  $posts=  Clients::all();
          return view('pages.attendance')->with('pos', $pos);
-
 
     }
 

@@ -19,6 +19,7 @@ Route::get('/clear', function() {
 
    Artisan::call('cache:clear');
    Artisan::call('config:clear');
+   Artisan::call('optimize');
    Artisan::call('config:cache');
    Artisan::call('view:clear');
 
@@ -27,18 +28,6 @@ Route::get('/clear', function() {
 });
 Route::get('/', 'WelcomeController@index');
 Route::get('dashboard', 'HomeController@dashboard');
-
-
-
-
-
-
-
-
-
-
-
-
 
 Route::post('/questmtncos','HomeController@questmtncos')->name('questmtncos');
 Route::post('/send_mail_info','HomeController@tEmail')->name('send_mail_info');
@@ -118,9 +107,11 @@ Route::group(['middleware'=>'check-permission:administrator|staff'], function ()
   Route::get('gt', 'HomeController@gt')->name('gt');
   Route::get('topup','ClientsController@topup');
   Route::get('cregister',  'HomeController@cregister');
+  Route::get('findparent',  'HomeController@findparent')->name('findparent');
   Route::get('totops',  'HomeController@totops')->name('totops');
   Route::get('attend','ClientAccountsController@DataattendDownload')->name('attend');
   Route::get('valgu',  'HomeController@valguest')->name('valgu');
+    Route::get('childguest',  'HomeController@childguest')->name('childguest');
   Route::get('/validate', 'TicketController@val')->name('validate');
   Route::get('valmT', 'HomeController@TicketvalmT')->name('valmT');
   Route::get('Temail',  'HomeController@Ticketemail');
@@ -174,6 +165,7 @@ Route::group(['middleware'=>'auth'], function () {
   Route::post('/top','ClientsController@ctop')->name('top');
   Route::get('add-to-cart/{id}', 'ProductsController@addToCart');
   Route::post('/valQrcode','HomeController@validateQrcode')->name('valQrcode');
+    Route::post('/findQrcode','HomeController@findQrcode')->name('findQrcode');
   Route::post('/valMQrcode','HomeController@validateMQrcode')->name('valMQrcode');
   Route::post('/TCemail','HomeController@sendbulkEmail')->name('TCemail');
   Route::get('cart', 'ProductsController@cart');

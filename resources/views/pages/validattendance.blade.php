@@ -28,7 +28,7 @@
 
     <div class="col-12" >
       <h3 class="titulo-tabla">SoGreene Guestlist </h3>
-
+  <a class="btn btn-primary" href="{{ route('childguest') }}">View Child List </a>
   <a class="btn btn-primary" href="{{ route('attend') }}">Validated Guest List </a>
       <table id="ejemplo" class="table table-striped table-bordered" style="width:100%">
         <thead>
@@ -37,8 +37,8 @@
               <th class="text-center">NAME</th>
                 <th class="text-center">PHONE</th>
                 <th class="text-center">WRISTBAND</th>
-                <th class="text-center">Checked In By</th>
                 <th class="text-center">TIME / DATE</th>
+                <th class="text-center">Checked In By</th>
                 <!-- <th>Time</th> -->
             </tr>
         </thead>
@@ -55,11 +55,12 @@
           echo '
           <tr>
           <td>'.$count++.'</td>
-          <td>'.$name.'</td>
+          <td>'.$row->name.'</td>
           <td>'.$phone2.'</td>
           <td>'.$row->tag_id.'</td>
+            <td>'.$row->updated_at.'</td>
           <td>'.$cbyname.'</td>
-          <td>'.$row->created_at.'</td>
+
           </tr>
           ';
           }
@@ -84,8 +85,8 @@
               <th class="text-center">NAME</th>
                 <th class="text-center">PHONE</th>
                 <th class="text-center">WRISTBAND</th>
-                <th class="text-center">Checked In By</th>
                 <th class="text-center">TIME / DATE</th>
+                <th class="text-center">Checked In By</th>
             </tr>
         </tfoot>
     </table>

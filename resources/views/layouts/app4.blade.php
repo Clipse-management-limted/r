@@ -48,10 +48,25 @@
 https://cdn.datatables.net/buttons/1.6.1/css/buttons.dataTables.min.css --}}
 <link href="{{ asset('datatable/style.css') }}" rel="stylesheet">
 <style>
+body {
+    font-family: "Raleway", sans-serif;
+    font-size: 14px;
+    line-height: 2.0;
+    color: #fb0c21;
+    background-color: #ffffff;
+}
 .pt-3-half {
 padding-top: 1.4rem;
 }
-
+.navbar-default {
+    background-color: #fb0c21;
+    border-color: #01feff;
+}
+.btn-primary-clips {
+    color: #fff;
+    background-color: #f30c21;
+    border-color: #2a88bd;
+}
 
 </style>
 
@@ -71,8 +86,8 @@ padding-top: 1.4rem;
                   </button>
 
                   <!-- Branding Image -->
-                  <a style="height: 70px;padding: 0px 0px;" class="navbar-brand" href="{{ url('/') }}"><img style="height: 70px;padding: 0px 0px;" src="img/download.png" alt="{{ config('app.name', 'Vanguard’s Personality Award') }}" >
-<img style="height: 70px;padding: 0px 0px;" src="img/vanguard-personality.png" alt="{{ config('app.name', 'Vanguard’s Personality Award') }}" >
+                  <a style="height: 70px;padding: 0px 0px;" class="navbar-brand" href="{{ url('/') }}"><img style="height: 70px;padding: 0px 0px;" src="img/lagos.jpg" alt="{{ config('app.name', 'Vanguard’s Personality Award') }}" >
+{{-- <img style="height: 70px;padding: 0px 0px;" src="img/photo_2020-03-18_12-28-22.jpg" alt="{{ config('app.name', 'Vanguard’s Personality Award') }}" > --}}
                   </a>
 
               </div>
@@ -93,6 +108,7 @@ padding-top: 1.4rem;
 
 
                   @elseif(checkPermission(['administrator']))
+
                     {{-- <li class="nav-item"><a class="nav-link" href="{{ route('totops') }}">View Tops Up</a></li>
                     <li class="nav-item"><a class="nav-link" href="{{ route('ed') }}">Export Data</a></li>
                       <li class="nav-item"><a class="nav-link" href="{{ route('tickets') }}">Tickets</a></li>
@@ -120,7 +136,8 @@ padding-top: 1.4rem;
                                   {{ Auth::user()->name }} <span class="caret"></span>
                               </a>
 
-                              {{-- <ul class="dropdown-menu">
+                              <ul class="dropdown-menu">
+                                 <li class="nav-item"><a class="nav-link" href="{{ route('findparent') }}">Find Parent</a></li>
                                   <li>
                                       <a href="{{ route('logout') }}"
                                           onclick="event.preventDefault();
@@ -132,7 +149,7 @@ padding-top: 1.4rem;
                                           {{ csrf_field() }}
                                       </form>
                                   </li>
-                              </ul> --}}
+                              </ul>
                           </li>
                       @endguest
 
@@ -141,6 +158,7 @@ padding-top: 1.4rem;
               </div>
           </div>
       </nav>
+
 
         @yield('content')
     </div>

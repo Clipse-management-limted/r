@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use App\Model\Clients;
 use App\Model\Kids;
+use App\Model\client_child;
 use App\Model\Checkin;
 use App\Model\Iv_Checkin;
 use App\Model\bulkemails;
@@ -143,6 +144,8 @@ public function updatefood()
     return view('pages.updatefood',compact('TICKECT',$TICKECT));
 }
 
+
+
 public function upfetchac(Request $request)
 {
     $TICKECT=User::where('is_permission','=','3')->get();
@@ -268,8 +271,8 @@ public function update_vendor_food(Request $request)
     ]);
 
     $itemsf = Clients::where('id',$request->id)
-         ->where('tag_id',$request->name)
-         ->orWhere('qr_code',$request->name)
+         ->where('name',$request->name)
+         // ->orWhere('qr_code',$request->name)
          ->update(['ch' => 1,'ch_by' =>Auth::user()->id]);
 
          $message ='ok';
@@ -283,6 +286,12 @@ public function update_vendor_food(Request $request)
 
   }
 
+  public function childguest()
+  {
+     $posts= client_child::all();
+
+       return view('pages.childattendance')->with('posts', $posts);
+  }
 
   public function valguest()
   {
@@ -587,6 +596,41 @@ $Existsc=mtncotumer::where('ivcode', $request->get('qrcode'))->orWhere('phone', 
 
   //dd($request->get('qrcode'));
 
+    }
+
+    public function findparent(Request $request)
+    {
+
+         $posts=Product::where('vendor_id', $request->get('vac'))->get();
+         //dd($posts);
+    return view('pages.findparent',compact('posts',$posts));
+    }
+
+    public function findQrcode(Request $request)
+    {
+      $this->validate($request, [
+      'qrcode' => 'required|string|max:255',
+
+     ]);
+ $Existsc=client_child::where('qrcode', $request->get('qrcode'))->exists();
+
+      if(!$Existsc)
+      {
+              $message ='Ticket Invalide.....!';
+
+            return response()->json([
+               'error' => '1',
+               'status'  => $message,
+            ], 302);
+      }else {
+         $Existsc=client_child::where('qrcode', $request->get('qrcode'))->first();
+//dd();
+         $Exists=Clients::where('tag_id', $Existsc['parent_qrcode'])->first();
+         return response()->json([
+            'error' => '1',
+            'status'  => $Exists,
+         ], 302);
+         }
     }
 
 
@@ -1157,35 +1201,21 @@ $data = array(
         $this->validate($request, [
         'name' => 'required|string|max:255',
         'phone_no' =>['required','numeric','min:0'],
-        'gender' => 'required|string|max:255',
+        'gender' => 'required',
         'qr_code' => 'required|string|max:255',
 
 
     ]);
 
 
-    // $validator = Validator::make($request->input(), array(
-    //   'name' => 'required|string|max:255',
-    //   'phone_no' =>['required','numeric','min:0'],
-    //   'gender' => 'required|string|max:255',
-    //   'qr_code' =>'required|string|max:255',
-    //       ));
-    //
-    //       if ($validator->fails()) {
-    //           return response()->json([
-    //               'error'    => true,
-    //               'messages' => $validator->errors(),
-    //           ], 422);
-    //       }
-
   $check = Clients::where('tag_id', '=' , $request->get('qr_code'))->exists();
   if($check){
     $message ='Something went wrong. Wristband Id Already Registered Thank You .....!';
-
-  return response()->json([
-     'error' => '1',
-     'status'  => $message,
-  ], 200);
+  return redirect()->back()->with('status', $message);
+  // return response()->json([
+  //    'error' => '1',
+  //    'status'  => $message,
+  // ], 200);
   }
   else {
     $user_id = mt_rand(13, rand(100, 99999990));
@@ -1206,15 +1236,15 @@ $data = array(
                            'balance'=> 0,
                           ));
 
-      //          $message ='User has been successfully Registered Thank You .....!';
-      // return redirect()->back()->with('status', $message);
+               $message ='User has been successfully Registered Thank You .....!';
+      return redirect()->back()->with('status', $message);
 
-      $message ='User has been successfully Registered Thank You .....!';
-
-  return response()->json([
-       'error' => '0',
-       'status'  => $message,
-   ], 200);
+  //     $message ='User has been successfully Registered Thank You .....!';
+  //
+  // return response()->json([
+  //      'error' => '0',
+  //      'status'  => $message,
+  //  ], 200);
   }
 
 
@@ -1231,7 +1261,7 @@ $data = array(
       'name' => 'required|string|max:255',
       'phone_no' =>['required','numeric','min:0'],
       'gender' => 'required|string|max:255',
-      'dp' => 'required|string|max:255',
+      'qr_code' => 'required|string|max:255',
 
 
   ]);
@@ -1274,16 +1304,38 @@ $data = array(
                'tag_id' => $request->get('qr_code')
              ));
 
+             for ($i = 0; $i < count($request->childname); $i++) {
+         			$post = client_child::create(array(
+         				'parent_qrcode' => $request->get('qr_code'),
+         				'name' => $request->childname[$i],
+         				'qrcode' => $request->childqrcode[$i],
+                	'reg_by' => Auth::user()->id
+         				// 'available_from'      =>    $request->event_id,
+         				// 'available_to'=>        $request->event_id
+         				// 'author' => Auth::user()->id
+         			));
+         		}
+
+
+
+if($items){
+  $message ='User has been successfully Registered Thank You .....!';
+return redirect()->back()->with('status', $message);
+}
+else {
+  $message ='Something went wrong. Please try again Thank You .....!';
+return redirect()->back()->with('status', $message);
+}
 
     //          $message ='User has been successfully Registered Thank You .....!';
     // return redirect()->back()->with('status', $message);
 
     $message ='User has been successfully Registered Thank You .....!';
-
-return response()->json([
-     'error' => '0',
-     'status'  => $message,
- ], 200);
+return redirect()->back()->with('status', $message);
+// return response()->json([
+//      'error' => '0',
+//      'status'  => $message,
+//  ], 200);
 // }
 
 

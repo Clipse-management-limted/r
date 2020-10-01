@@ -1,4 +1,4 @@
-@extends('layouts.app3')
+@extends('layouts.app4')
 @section('title') Attendance  @endsection
 @section('content')
 
@@ -15,7 +15,7 @@
   <!-- Editable table -->
 <div class="card">
   <div class="card-body">
-    <div class="col-md-4 pull-right">
+    <div class="col-md-12 pull-right">
  <div class="active-pink-3 active-pink-4 mb-4">
  <input class="form-control" id="myInput" type="text" placeholder="Search..">
 </div>
@@ -40,18 +40,19 @@
           $count = 1;
           foreach($pos as $row)
           {
-            $name=App\Model\Clients::usersinfo($row->tag_id);
-            $phone2=App\Model\Clients::phoneinfo2($row->tag_id);
+            // $name=App\Model\Clients::usersinfo($row->tag_id);
+            // $phone2=App\Model\Clients::phoneinfo2($row->tag_id);
 
 
           echo '
           <tr>
           <td>'.$count++.'</td>
-          <td>'.$name.'</td>
-          <td>'.$phone2.'</td>
-          <td>'.$row->tag_id.'</td>
-          <td>'.$row->created_at.'</td>
-          <td><button type="button" name="email_button" class="btn btn-info btn-xs email_button" id="'.$count.'" data-uid="'.$row->id.'" data-name="'.$row->tag_id.'"  data-action="single">Check In</button></td>
+          <td style="font-size :11px;">'.$row->name.'</td>
+        <td style="font-size :11px;">'.$row->phone.'</td>
+        <td style="">'.$row->tag_id.'</td>
+            <td style="font-size :11px;">'.$row->created_at.'</td>
+
+          <td><button type="button" name="email_button" class="btn btn-info btn-xs email_button" id="'.$row->id.'" data-uid="'.$row->id.'" data-name="'.$row->name.'"  data-action="single">Check In</button></td>
           </tr>
           ';
           }
